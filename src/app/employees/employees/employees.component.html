@@ -1,0 +1,85 @@
+<section class="tw-container tw-mx-auto tw-my-4">
+    <nz-page-header class="page-header" [nzTitle]="pageHeader">
+        <nz-page-header-extra>
+            <!-- <app-back-route always="true" defaultRef="users"></app-back-route> -->
+            <div class="">
+                <a nz-button nzSize="large" nzType="primary" routerLink="create">
+                    <i nz-icon nzType="plus" nzTheme="outline"></i>ADD
+                </a>
+            </div>
+        </nz-page-header-extra>
+    </nz-page-header>
+    <section>
+        <nz-spin [nzSize]="'large'" nzTip="Loading..." [nzSpinning]="pageLoader">
+            <form *ngIf="SearchForm" [formGroup]="SearchForm" (submit)="search(true)" class="search-section">
+                <div nz-row [nzGutter]="5" nzJustify="space-between" nzAlign="middle">
+                    <div nz-col nzFlex="3" formGroupName="where">
+                        <nz-form-item formGroupName="wildcard">
+                            <nz-form-control>
+                                <input nz-input formControlName="value" placeholder="Search by keyword" />
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzFlex="1">
+                        <nz-form-item>
+                            <nz-form-control>
+                                <nz-button-group>
+                                    <button nz-button type="button" (click)="clearSearch()" nzType="primary" nzGhost><i nz-icon nzType="close" nzTheme="outline"></i>Clear</button>
+                                    <button nz-button type="submit" nzType="primary"><i nz-icon nzType="search" nzTheme="outline"></i>Search</button>
+                                </nz-button-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="!error">
+                <nz-table [nzData]="dataList" nzSize="small" [nzNoResult]="noUserTemp" nzShowPagination="false">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Date of Birth</th>
+                            <th>Age</th>
+                            <th>Salary</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of dataList">
+                            <td>{{item.first_name}}</td>
+                            <td>{{item.last_name}}</td>
+                            <td>{{item.mobile}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.dob|date:'mediumDate'}}</td>
+                            <td>{{item.age}}</td>
+                            <td>{{item.salary | number}}</td>
+                            <td class="tw-text-right">
+                                <nz-button-group>
+                                    <button nz-button title="Edit Employee" [routerLink]="item.id + '/edit'"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                                    <button nz-button title="Delete Employee" nz-popconfirm nzTitle="Are you sure to delete this?" nzCancelText="NO" nzOkText="YES" (nzOnConfirm)="delete(item.id)"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                                </nz-button-group>
+                            </td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+                <ng-template #noUserTemp>
+                    <nz-empty nzNotFoundContent="No Employee Found"></nz-empty>
+                </ng-template>
+            </div>
+
+            <div *ngIf="!pageLoader && error">
+                <nz-alert nzType="error" nzMessage="ERROR!" [nzDescription]="error"></nz-alert>
+            </div>
+
+            <div class="tw-text-center tw-py-5">
+                <nz-pagination [nzPageIndex]="paginator.page" [nzTotal]="paginator.total" [nzPageSize]="paginator.limit" nzHideOnSinglePage="true" [nzShowTotal]="showTotalTemplate" (nzPageIndexChange)="changePage($event)"></nz-pagination>
+                <ng-template #showTotalTemplate let-range="range" let-total>
+                    <small>Showing {{ range[0] }} to {{ range[1] }} of {{ total|number }}</small>
+                </ng-template>
+            </div>
+        </nz-spin>
+
+    </section>
+</section>

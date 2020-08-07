@@ -1,0 +1,86 @@
+<section class="tw-container tw-mx-auto tw-my-4">
+    <nz-page-header class="page-header" [nzTitle]="pageHeader">
+        <nz-page-header-extra>
+            <app-back-route always="true" defaultRef="employees"></app-back-route>
+        </nz-page-header-extra>
+    </nz-page-header>
+    <section class="page-content">
+        <nz-spin [nzSize]="'large'" nzTip="Loading..." [nzSpinning]="pageLoader">
+            <div class="tw-mb-3" *ngIf="error">
+                <nz-alert nzType="error" [nzMessage]="error"></nz-alert>
+            </div>
+            <form nz-form [formGroup]="employeeForm" (ngSubmit)="formSubmit()">
+                <div class="tw-rounded tw-bg-white tw-shadow tw-p-5 tw-mb-5">
+                    <div nz-row nzGutter="16" nzAlign="middle">
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="First Name is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">First Name</nz-form-label>
+                                    <input type="text" nzSize="large" nz-input formControlName="first_name" placeholder="First Name" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Last Name is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">Last Name</nz-form-label>
+                                    <input type="text" nzSize="large" nz-input formControlName="last_name" placeholder="Last Name" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-row nzGutter="16" nzAlign="middle">
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Mobile Number is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">Mobile</nz-form-label>
+                                    <input type="text" nzSize="large" nz-input formControlName="mobile" placeholder="Mobile Number" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Email Address is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">Email</nz-form-label>
+                                    <input type="email" nzSize="large" nz-input formControlName="email" placeholder="Email Address" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                    <div nz-row nzGutter="16" nzAlign="middle">
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Salary is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">Salary</nz-form-label>
+                                    <input type="number" nzSize="large" nz-input formControlName="salary" placeholder="Salary" />
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                        <div nz-col nzFlex="1">
+                            <nz-form-item>
+                                <nz-form-control nzErrorTip="Date of Birth is Required">
+                                    <nz-form-label nzRequired="true" nzNoColon="true">Date of Birth</nz-form-label>
+                                    <div>
+                                        <nz-date-picker formControlName="dob" nzPlaceHolder="Date of Birth"></nz-date-picker>
+                                    </div>
+                                </nz-form-control>
+                            </nz-form-item>
+                        </div>
+                    </div>
+                </div>
+                <div class="tw-text-right tw-my-5">
+                    <button nz-button nzSize="large" nzType="primary" [nzLoading]="formSpinner">
+                        <i nz-icon nzType="save" nzTheme="outline"></i> Save
+                    </button>
+                </div>
+                <nz-alert nzBanner nzType="error" [nzMessage]="formError?.message" [nzDescription]="formErrorTemp" *ngIf="formError">
+                    <ng-template #formErrorTemp>
+                        <div [innerHTML]="formError.error.html"></div>
+                    </ng-template>
+                </nz-alert>
+            </form>
+        </nz-spin>
+
+    </section>
+
+</section>

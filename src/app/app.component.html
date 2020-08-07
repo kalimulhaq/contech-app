@@ -1,0 +1,15 @@
+<nz-layout>
+  <nz-header class="tw-flex tw-justify-between">
+    <div class="logo">Logo</div>
+    <ul nz-menu [nzTheme]="'light'" nzMode="horizontal" class="tw-uppercase">
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact="true"><a routerLink="/dashboard">Dashboard</a></li>
+      <li nz-menu-item nzMatchRouter nzMatchRouterExact="true"><a routerLink="/employees">Employees</a></li>
+    </ul>
+    <div>
+    </div>
+  </nz-header>
+  <nz-content>
+    <router-outlet></router-outlet>
+  </nz-content>
+  <nz-footer></nz-footer>
+</nz-layout>
