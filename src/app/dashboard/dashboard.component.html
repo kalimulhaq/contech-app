@@ -1,5 +1,10 @@
-<div class="tw-text-center tw-p-16">
-  <h2>Assignment</h2>
-  <!-- <p>By</p>
-    <h3>Kalim</h3> -->
-</div>
+<section class="tw-container tw-mx-auto tw-my-10 ">
+  <div class="tw-mb-5" *ngIf="topEmployeesChartData.dataTable.length">
+    <h3>Top 10 paid employees</h3>
+    <google-chart [data]="topEmployeesChartData"></google-chart>
+  </div>
+  <div class="tw-mb-5" *ngIf="averageSalaryChartData.dataTable.length">
+    <h3>Average Salary by Age</h3>
+    <google-chart [data]="averageSalaryChartData"></google-chart>
+  </div>
+</section>

@@ -14,12 +14,15 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSpinModule, NzMessageModule, NzAutocompleteModule, NzSelectModule, NzFormModule, NzLayoutModule, NzMenuModule, NzGridModule } from 'ng-zorro-antd';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { HTTPInterceptor } from './helpers/http-interceptor';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ registerLocaleData(en);
     NzMessageModule,
     NzAutocompleteModule,
     NzSelectModule,
-    NzSpaceModule
+    NzSpaceModule,
+    Ng2GoogleChartsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HTTPInterceptor, multi: true }, { provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent]

@@ -55,11 +55,10 @@ export class EmployeesComponent implements OnInit {
       where: new FormGroup({
         and: new FormArray([]),
         wildcard: new FormGroup({
-          fields: new FormControl(['first_name', 'last_name', 'dob', 'mobile', 'email', 'salary']),
+          fields: new FormControl(['first_name', 'last_name', 'dob', 'age', 'mobile', 'email', 'salary']),
           value: new FormControl(''),
         })
       }),
-      scopes: new FormControl(['age']),
       order: new FormArray([
         new FormGroup({
           field: new FormControl('first_name'),

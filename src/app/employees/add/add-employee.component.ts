@@ -32,6 +32,7 @@ export class AddEmployeeComponent implements OnInit {
     private Message: NzMessageService,
     private Employees: EmployeesService,
   ) {
+    this.title.setTitle(this.pageHeader);
   }
 
   ngOnInit() {
