@@ -51,9 +51,9 @@ export class DashboardComponent implements OnInit {
 
   public topPaidEmployees() {
     this.Statistics.topPaidEmployees(10).subscribe((resp: any) => {
-      let chartData = [['Employee', 'Salary']];
+      let chartData: any = [['Employee', 'Salary']];
       resp.record.forEach((emp: any) => {
-        chartData.push([emp.full_name, emp.salary]);
+        chartData.push([emp.full_name, Number(emp.salary)]);
       });
       this.topEmployeesChartData.dataTable = chartData;
       this.topEmployeesChartData = Object.create(this.topEmployeesChartData);
@@ -64,9 +64,9 @@ export class DashboardComponent implements OnInit {
 
   public averageSalaryByAge() {
     this.Statistics.averageSalaryByAge().subscribe((resp: any) => {
-      let chartData = [['Age', 'Average Salary']];
+      let chartData: any = [['Age', 'Average Salary']];
       resp.record.forEach((emp: any) => {
-        chartData.push([emp.age + '', emp.avg_salary]);
+        chartData.push([emp.age + '', Number(emp.avg_salary)]);
       });
       this.averageSalaryChartData.dataTable = chartData;
       this.averageSalaryChartData = Object.create(this.averageSalaryChartData);
